@@ -1,0 +1,22 @@
+body
+{
+ background-color: #e0ffff;
+}
+
+#hello_there
+{
+    display: block;  
+    margin: 0 auto;
+}
+
+#uuu
+{
+    background-color: lightgoldenrodyellow;
+/*    visibility: hidden;*/
+    border-width: 5px;
+    border-color: #B00B55;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 30px;
+    text-align: center;
+}
