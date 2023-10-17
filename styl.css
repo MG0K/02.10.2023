@@ -1,22 +1,80 @@
-body
-{
- background-color: #e0ffff;
-}
-
-#hello_there
-{
-    display: block;  
-    margin: 0 auto;
-}
-
-#uuu
-{
-    background-color: lightgoldenrodyellow;
-/*    visibility: hidden;*/
-    border-width: 5px;
-    border-color: #B00B55;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 30px;
+/* Styl strony głównej */
+body {
+    font-family: Arial, sans-serif;
     text-align: center;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    color: #333;
+}
+
+/* Styl kalkulatora */
+form {
+    margin: 0 auto;
+    width: 300px;
+    height: 350px;
+    background-color: #fff;
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"] {
+    width: 90%;
+    padding: 10px;
+    font-size: 18px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.przycisk{
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.przycisk:hover {
+    background-color: #45a049;
+}
+
+/* Styl przycisków funkcyjnych */
+.funkcyjny{
+    background-color: #0073e6;
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+    float: right;
+}
+
+.funkcyjny:hover {
+    background-color: #015dba;
+}
+
+input[type="button"][value="="] {
+    width: 100px;
+    clear: both;
+}
+input[type="button"][value="0"] {
+    width: 100px;
+}
+
+/* Dodatkowy styl dla operacji potęgowania i pierwiastkowania */
+input[type="button"][value="^"],
+input[type="button"][value="√"] {
+    width: 50px;
+    float: right;
 }
