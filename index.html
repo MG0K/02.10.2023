@@ -1,25 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="styl.css">
+    <title>Kalkulator</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
 </head>
 <body>
+    <h1>Kalkulator</h1>
+    <form name="kalkulator">
+        <input type="text" name="wynik" id="wynik" value="">
+        <br>
+        <input type="button" value="1" class="przycisk" onclick="wprowadzCyfre('1')">
+        <input type="button" value="2" class="przycisk" onclick="wprowadzCyfre('2')">
+        <input type="button" value="3" class="przycisk"  onclick="wprowadzCyfre('3')">
+        <input type="button" value="+" class="funkcyjny" onclick="wprowadzOperator('+')">
+        <br>
+        <input type="button" value="4" class="przycisk" onclick="wprowadzCyfre('4')">
+        <input type="button" value="5" class="przycisk" onclick="wprowadzCyfre('5')">
+        <input type="button" value="6" class="przycisk" onclick="wprowadzCyfre('6')">
+        <input type="button" value="-" class="funkcyjny" onclick="wprowadzOperator('-')">
+        <br>
+        <input type="button" value="7" class="przycisk" onclick="wprowadzCyfre('7')">
+        <input type="button" value="8" class="przycisk" onclick="wprowadzCyfre('8')">
+        <input type="button" value="9" class="przycisk" onclick="wprowadzCyfre('9')">
+        <input type="button" value="*" class="funkcyjny" onclick="wprowadzOperator('*')">
+        <br>
+        <input type="button" value="0" class="przycisk" onclick="wprowadzCyfre('0')">
+        <input type="button" value="C" class="funkcyjny" onclick="wyczysc()">
+        <input type="button" value="/" class="funkcyjny" onclick="wprowadzOperator('/')">
+        <input type="button" value="=" class="funkcyjny" onclick="oblicz()">
+        <br>
+        <input type="button" value="^" class="funkcyjny" onclick="wprowadzOperator('Math.pow')">
+        <input type="button" value="√" class="funkcyjny" onclick="wprowadzOperator('Math.sqrt')">
+        <br>
+    </form>
 
-    <div>
-    <img src="https://www.giantfreakinrobot.com/wp-content/uploads/2022/06/hellotherethumb.jpg" alt=" Hello There " width="50%" height="50%" id="hello_there">
-    </div>
+    <script>
+        function wprowadzCyfre(cyfra) {
+            document.kalkulator.wynik.value += cyfra;
+        }
 
-    <br>
+        function wprowadzOperator(operator) {
+            document.kalkulator.wynik.value += operator;
+        }
 
-    <table border="5px" id="uuu">
-        <tr><th>Mateusz Kaproń</th></tr>
-        <tr><td>Witryny i aplikacje internetowe</td></tr>
-        <tr><td>2023</td></tr>
-        <tr><td>Jakub Sałach</td></tr>
-    </table>
+        function oblicz() {
+            try {
+                document.kalkulator.wynik.value = eval(document.kalkulator.wynik.value);
+            } catch (e) {
+                document.kalkulator.wynik.value = 'Błąd';
+            }
+        }
 
+        function wyczysc() {
+            document.kalkulator.wynik.value = '';
+        }
+    </script>
 </body>
 </html>
