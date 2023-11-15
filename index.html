@@ -1,60 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="pl">
 <head>
-    <title>Kalkulator</title>
-    <link rel="stylesheet" type="text/css" href="styl.css">
-
-</head>
-<body>
-    <h1>Kalkulator</h1>
-    <form name="kalkulator">
-        <input type="text" name="wynik" id="wynik" value="">
-        <br>
-        <input type="button" value="1" class="przycisk" onclick="wprowadzCyfre('1')">
-        <input type="button" value="2" class="przycisk" onclick="wprowadzCyfre('2')">
-        <input type="button" value="3" class="przycisk"  onclick="wprowadzCyfre('3')">
-        <input type="button" value="+" class="funkcyjny" onclick="wprowadzOperator('+')">
-        <br>
-        <input type="button" value="4" class="przycisk" onclick="wprowadzCyfre('4')">
-        <input type="button" value="5" class="przycisk" onclick="wprowadzCyfre('5')">
-        <input type="button" value="6" class="przycisk" onclick="wprowadzCyfre('6')">
-        <input type="button" value="-" class="funkcyjny" onclick="wprowadzOperator('-')">
-        <br>
-        <input type="button" value="7" class="przycisk" onclick="wprowadzCyfre('7')">
-        <input type="button" value="8" class="przycisk" onclick="wprowadzCyfre('8')">
-        <input type="button" value="9" class="przycisk" onclick="wprowadzCyfre('9')">
-        <input type="button" value="*" class="funkcyjny" onclick="wprowadzOperator('*')">
-        <br>
-        <input type="button" value="0" class="przycisk" onclick="wprowadzCyfre('0')">
-        <input type="button" value="C" class="funkcyjny" onclick="wyczysc()">
-        <input type="button" value="/" class="funkcyjny" onclick="wprowadzOperator('/')">
-        <input type="button" value="=" class="funkcyjny" onclick="oblicz()">
-        <br>
-        <input type="button" value="^" class="funkcyjny" onclick="wprowadzOperator('Math.pow')">
-        <input type="button" value="√" class="funkcyjny" onclick="wprowadzOperator('Math.sqrt')">
-        <br>
-    </form>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezerwacja Busa na powrót z imprezy</title>
+    <link rel="stylesheet" href="styl.css">
     <script>
-        function wprowadzCyfre(cyfra) {
-            document.kalkulator.wynik.value += cyfra;
-        }
-
-        function wprowadzOperator(operator) {
-            document.kalkulator.wynik.value += operator;
-        }
-
-        function oblicz() {
-            try {
-                document.kalkulator.wynik.value = eval(document.kalkulator.wynik.value);
-            } catch (e) {
-                document.kalkulator.wynik.value = 'Błąd';
-            }
-        }
-
-        function wyczysc() {
-            document.kalkulator.wynik.value = '';
+        function wyswietlAlert() {
+            alert("Miejsce zostało zarezerwowane!");
         }
     </script>
+</head>
+<body>
+    <section class="baner">
+        <div class="container">
+            <h1>Party Bus dojedzie tam gdzie będzię trzeba i jak trzeba</h1>
+        </div>
+    </section>
+    <section class="lewy">
+        <div class="container">
+            <img src="bus.jpg" alt="autokar pks biłgoraj">
+        </div>
+    </section>
+    <section class="prawy">
+        <div class="container">
+            <h4>Z nami bezpiecznie trafisz do domu w każdym stanie nietrzeźwości!</h4>
+            <ol type="I">
+                <li>Mniej niż 10 km - 20zł</li>
+                <li>Między 10 a 20 km - 40zł</li>
+                <li>dalej niż 20 km - 50zł + 5zł za każde 5 km</li>
+            </ol>
+        </div>
+    </section>
+    <section class="dolny">
+        <div class="container">
+            <h2>Rezerwacja miejsca online</h2>
+            <form action="" id="rezerwacja">
+                <label for="dane">Imię i nazwisko:</label> <br>
+                <input type="text" class="inputy" name="dane" id="dane" required> <br>
+                <label for="data">Data:</label> <br>
+                <input type="date" id="data" required><br>
+                <label for="trzeźwość">Czy będziesz trzeźwy?</label><br>
+                <span style="font-weight: bold;">TAK</span><input type="radio" name="trzeźwość" id="tak" value="tak" checked><span style="font-weight: bold;">NIE</span> <input type="radio" name="trzeźwość" id="nie" value="nie"> <br>
+                <label for="siedzenie">Gdzie chcesz siedzieć?</label> <br>
+                <select name="siedzenie" id="siedzenie">
+                    <option value="z przodu">Frajerski przód</option>
+                    <option value="z tyłu">Prawilny tył</option>
+                    <option value="po środku">Neutralny środeczek</option>
+                </select><br>
+                <input type="checkbox" name="zgoda" id="zgoda" c><span style="font-weight: bold;">Zgadzam się na przetwarzanie danych osobowych</span> <br>
+                <input type="reset" value="Wyczyść"><input type="button" value="Zarezerwuj" onclick="wyswietlAlert()">
+            </form>
+        </div>
+    </section>
 </body>
 </html>
