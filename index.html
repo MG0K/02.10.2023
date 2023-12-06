@@ -1,60 +1,234 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Kalkulator</title>
-    <link rel="stylesheet" type="text/css" href="styl.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalendarz Adwentowy</title>
+    <style>
 
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('./tlo2.jpg');
+        }
+
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+        }
+
+        .day {
+            background-color: red;
+            border: 1px solid #ccc;
+            padding: 20px;
+            text-align: center;
+            font-size: 18px;
+            cursor: pointer;
+            color: white;
+            width: 80px;
+            height: 80px;
+        }
+
+        .surprise-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .surprise-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+    </style>
 </head>
 <body>
-    <h1>Kalkulator</h1>
-    <form name="kalkulator">
-        <input type="text" name="wynik" id="wynik" value="">
-        <br>
-        <input type="button" value="1" class="przycisk" onclick="wprowadzCyfre('1')">
-        <input type="button" value="2" class="przycisk" onclick="wprowadzCyfre('2')">
-        <input type="button" value="3" class="przycisk"  onclick="wprowadzCyfre('3')">
-        <input type="button" value="+" class="funkcyjny" onclick="wprowadzOperator('+')">
-        <br>
-        <input type="button" value="4" class="przycisk" onclick="wprowadzCyfre('4')">
-        <input type="button" value="5" class="przycisk" onclick="wprowadzCyfre('5')">
-        <input type="button" value="6" class="przycisk" onclick="wprowadzCyfre('6')">
-        <input type="button" value="-" class="funkcyjny" onclick="wprowadzOperator('-')">
-        <br>
-        <input type="button" value="7" class="przycisk" onclick="wprowadzCyfre('7')">
-        <input type="button" value="8" class="przycisk" onclick="wprowadzCyfre('8')">
-        <input type="button" value="9" class="przycisk" onclick="wprowadzCyfre('9')">
-        <input type="button" value="*" class="funkcyjny" onclick="wprowadzOperator('*')">
-        <br>
-        <input type="button" value="0" class="przycisk" onclick="wprowadzCyfre('0')">
-        <input type="button" value="C" class="funkcyjny" onclick="wyczysc()">
-        <input type="button" value="/" class="funkcyjny" onclick="wprowadzOperator('/')">
-        <input type="button" value="=" class="funkcyjny" onclick="oblicz()">
-        <br>
-        <input type="button" value="^" class="funkcyjny" onclick="wprowadzOperator('Math.pow')">
-        <input type="button" value="√" class="funkcyjny" onclick="wprowadzOperator('Math.sqrt')">
-        <br>
-    </form>
+    <div class="calendar">
+        <div class="day" onclick="openDoor(1)">1</div>
+        <div class="day" onclick="openDoor(2)">2</div>
+        <div class="day" onclick="openDoor(3)">3</div>
+        <div class="day" onclick="openDoor(4)">4</div>
+        <div class="day" onclick="openDoor(5)">5</div>
+        <div class="day" onclick="openDoor(6)">6</div>
+        <div class="day" onclick="openDoor(7)">7</div>
+        <div class="day" onclick="openDoor(8)">8</div>
+        <div class="day" onclick="openDoor(9)">9</div>
+        <div class="day" onclick="openDoor(10)">10</div>
+        <div class="day" onclick="openDoor(11)">11</div>
+        <div class="day" onclick="openDoor(12)">12</div>
+        <div class="day" onclick="openDoor(13)">13</div>
+        <div class="day" onclick="openDoor(14)">14</div>
+        <div class="day" onclick="openDoor(15)">15</div>
+        <div class="day" onclick="openDoor(16)">16</div>
+        <div class="day" onclick="openDoor(17)">17</div>
+        <div class="day" onclick="openDoor(18)">18</div>
+        <div class="day" onclick="openDoor(19)">19</div>
+        <div class="day" onclick="openDoor(20)">20</div>
+        <div class="day" onclick="openDoor(21)">21</div>
+        <div class="day" onclick="openDoor(22)">22</div>
+        <div class="day" onclick="openDoor(23)">23</div>
+        <div class="day" onclick="openDoor(24)">24</div>
+    </div>
+
+    <div class="surprise-container" id="surpriseContainer">
+        <div class="surprise-content" id="surpriseContent">
+            <span class="close-btn" onclick="closeSurprise()">X</span>
+            <div id="surpriseText"></div>
+            <img src="" alt="" id="surpriseImage" height="300" width="300">
+        </div>
+    </div>
 
     <script>
-        function wprowadzCyfre(cyfra) {
-            document.kalkulator.wynik.value += cyfra;
-        }
+                let openedDoors = [];
 
-        function wprowadzOperator(operator) {
-            document.kalkulator.wynik.value += operator;
-        }
-
-        function oblicz() {
-            try {
-                document.kalkulator.wynik.value = eval(document.kalkulator.wynik.value);
-            } catch (e) {
-                document.kalkulator.wynik.value = 'Błąd';
+        function openDoor(day) {
+            if (openedDoors.includes(day)) {
+                alert("Już zjadłeś tę czekoladkę, człowieku!");
+            } else {
+                openedDoors.push(day);
+                showSurprise(day);
             }
         }
 
-        function wyczysc() {
-            document.kalkulator.wynik.value = '';
+        function showSurprise(day) {
+            const surpriseContainer = document.getElementById("surpriseContainer");
+            const surpriseContent = document.getElementById("surpriseContent");
+            const surpriseText = document.getElementById("surpriseText");
+            const surpriseImage = document.getElementById("surpriseImage");
+            const surpriseVideo = document.getElementById("surpriseVideo");
+
+            // Tu możesz dodać treść, obrazki, linki do filmów itp. dla każdego dnia
+            // Przykład dla dnia 1:
+            if (day === 1) {
+                surpriseText.innerHTML = "Dzień 1: Życzymy Ci wesołych świąt!";
+                surpriseImage.src = "1.jpg";
+            }
+            if (day === 2) {
+                surpriseText.innerHTML = "Dzień 2: Życzymy Ci wesołych świąt!";
+                surpriseImage.src = "2.jpg";
+            }
+            if (day === 3) {
+                surpriseText.innerHTML = "Dzień 3: Życzymy Ci wesołych świąt!";
+                surpriseImage.src = "3.jpg";
+            }
+            if (day === 4) {
+                surpriseText.innerHTML = "Dzień 4: Życzymy Ci wesołych świąt!";
+                surpriseImage.src = "4.jpg";
+            }
+            if (day === 5) {
+                surpriseText.innerHTML = "Dzień 5: Życzymy Ci wesołych świąt!";
+                surpriseImage.src = "5.jpg";
+            }
+            if (day === 6) {
+                surpriseText.innerHTML = "Dzień 6: Życzymy Ci wesołych świąt!";
+                surpriseImage.src = "6.jpg";
+            }
+            if (day === 7) {
+                surpriseText.innerHTML = "Dzień 7: Życzymy Ci wesołych świąt!";
+                surpriseImage.src = "7.jpg";
+            }
+            if (day === 8) {
+                surpriseText.innerHTML = "Dzień 8: Życzymy Ci wesołych świąt!";
+                surpriseImage.src = "8.jpg";
+            }
+            if (day === 9) {
+                surpriseText.innerHTML = "Dzień 9: Życzymy Ci wesołych świąt!";
+                surpriseImage.src = "9.jpg";
+            }
+            if (day === 10) {
+                surpriseText.innerHTML = "Dzień 10: Życzymy Ci wesołych świąt!";
+                surpriseImage.src = "10.jpg";
+            }
+            if (day === 11) {
+                surpriseText.innerHTML = "Dzień 11: Życzymy Ci wesołych świąt!";
+                surpriseImage.src = "11.jpg";
+            }
+            if (day === 12) {
+                surpriseText.innerHTML = "Dzień 12: Życzymy Ci wesołych świąt!";
+                surpriseImage.src = "12.jpg";
+            }
+            if (day === 13) {
+                surpriseText.innerHTML = "Dzień 13: Życzymy Ci wesołych świąt!";
+                surpriseImage.src = "13.jpg";
+            }
+            if (day === 14) {
+                surpriseText.innerHTML = "Dzień 14: Życzymy Ci wesołych świąt!";
+                surpriseImage.src = "14.jpg";
+            }
+            if (day === 15) {
+                surpriseText.innerHTML = "Dzień 15: Życzymy Ci wesołych świąt!";
+                surpriseImage.src = "15.jpg";
+            }
+            if (day === 16) {
+                surpriseText.innerHTML = "Dzień 16: Życzymy Ci wesołych świąt!";
+                surpriseImage.src = "2.jpg";
+            }
+            if (day === 17) {
+                surpriseText.innerHTML = "Dzień 17: Życzymy Ci wesołych świąt!";
+                surpriseImage.src = "6.jpg";
+            }
+            if (day === 18) {
+                surpriseText.innerHTML = "Dzień 18: Życzymy Ci wesołych świąt!";
+                surpriseImage.src = "12.jpg";
+            }
+            if (day === 19) {
+                surpriseText.innerHTML = "Dzień 19: Życzymy Ci wesołych świąt!";
+                surpriseImage.src = "5.jpg";
+            }
+            if (day === 20) {
+                surpriseText.innerHTML = "Dzień 20: Życzymy Ci wesołych świąt!";
+                surpriseImage.src = "11.jpg";
+            }
+            if (day === 21) {
+                surpriseText.innerHTML = "Dzień 21: Życzymy Ci wesołych świąt!";
+                surpriseImage.src = "9.jpg";
+            }
+            if (day === 22) {
+                surpriseText.innerHTML = "Dzień 22: Życzymy Ci wesołych świąt!";
+                surpriseImage.src = "7.jpg";
+            }
+            if (day === 23) {
+                surpriseText.innerHTML = "Dzień 23: Życzymy Ci wesołych świąt!";
+                surpriseImage.src = "4.jpg";
+            }
+            if (day === 24) {
+                surpriseText.innerHTML = "Dzień 24: Życzymy Ci wesołych świąt!";
+                surpriseImage.src = "3.jpg";
+            }
+        
+
+            // Możesz dodać więcej warunków dla innych dni
+
+            surpriseContainer.style.display = "flex";
         }
+
+        function closeSurprise() {
+            const surpriseContainer = document.getElementById("surpriseContainer");
+            surpriseContainer.style.display = "none";
+        }
+
     </script>
 </body>
 </html>
